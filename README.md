@@ -28,9 +28,9 @@ june_temp_prcp_df.describe()
 
  ![Query 1A](https://user-images.githubusercontent.com/96449605/156910462-f1f1da46-b49b-4c97-9053-d890649e58f7.png)
 
-# June graph of temp x prcp with trendline
+June graph of temp x prcp with trendline
 june_temp_prcp_df = pd.DataFrame(june_temp_prcp, columns=['tobs','prcp'])
-# have to drop Nans to plot on the scatterplot
+have to drop Nans to plot on the scatterplot
 june_temp_prcp_df = june_temp_prcp_df.dropna()
 june_temp_prcp_df.plot.scatter('tobs', 'prcp')
 plt.tight_layout()
@@ -38,23 +38,23 @@ plt.title('June Temperature by Precipitation')
 plt.xlim([55, 85])
 plt.ylim([0,8])
 
-# Add Trendline and equation
+Add Trendline and equation
 slope, intercept, r_value, p_value, std_err = stats.linregress(june_temp_prcp_df['tobs'],june_temp_prcp_df['prcp'])
 sns.regplot(x='tobs', y='prcp', data=june_temp_prcp_df, ci=None, label="y={0:.4f}x+{1:.4f}".format(slope,intercept)).legend(loc="best")
 
  ![Query 1B](https://user-images.githubusercontent.com/96449605/156910470-50af236f-e058-48dd-a66a-65671b8269fa.png)
 
-# Additional Query 2: December Precipitation 
+Additional Query 2: December Precipitation 
 dec_temp_prcp = session.query(Measurement.tobs,Measurement.prcp).filter(extract('month', Measurement.date) == 12).all()
 dec_temp_prcp_df = pd.DataFrame(dec_temp_prcp)
-# print(dec_temp_prcp_df)
+print(dec_temp_prcp_df)
 dec_temp_prcp_df.describe()
 
  ![Query 2A](https://user-images.githubusercontent.com/96449605/156910484-6123d89d-0c0e-4c4d-a296-0c0de9e65bb4.png)
 
-# Dec graph of temp x prcp with trendline
+Dec graph of temp x prcp with trendline
 dec_temp_prcp_df = pd.DataFrame(dec_temp_prcp, columns=['tobs','prcp'])
-# have to drop Nans to plot on the scatterplot
+have to drop Nans to plot on the scatterplot
 dec_temp_prcp_df = dec_temp_prcp_df.dropna()
 dec_temp_prcp_df.plot.scatter('tobs', 'prcp')
 plt.tight_layout()
@@ -62,7 +62,7 @@ plt.title('December Temperature by Precipitation')
 plt.xlim([55, 85])
 plt.ylim([0,8])
 
-# Add Trendline and equation
+Add Trendline and equation
 slope, intercept, r_value, p_value, std_err = stats.linregress(dec_temp_prcp_df['tobs'], dec_temp_prcp_df['prcp'])
 sns.regplot(x='tobs', y='prcp', data=dec_temp_prcp_df, ci=None, label="y={0:.4f}x+{1:.4f}".format(slope,intercept)).legend(loc="best")
  
